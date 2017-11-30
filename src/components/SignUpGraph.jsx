@@ -104,28 +104,28 @@ class SignUpGraph extends Component {
       }, [])
       .sort((curVal, nextVal) => curVal.category - nextVal.category)
 
-    this.yearlyJoinDateData = users.reduce((accumulator, currentUser) => {
-      const year = getYear(currentUser.joinDate)
-      if (accumulator.some(obj => obj.hasOwnProperty('category'))) {
-        if (accumulator.some(obj => obj.category === year)) {
-          const index = accumulator.findIndex(obj => obj.category === year)
-          accumulator[index].count += 1
+    this.yearlyJoinDateData = users
+      .reduce((accumulator, currentUser) => {
+        const year = getYear(currentUser.joinDate)
+        if (accumulator.some(obj => obj.hasOwnProperty('category'))) {
+          if (accumulator.some(obj => obj.category === year)) {
+            const index = accumulator.findIndex(obj => obj.category === year)
+            accumulator[index].count += 1
+          } else {
+            accumulator.push({
+              category: year,
+              count: 1
+            })
+          }
         } else {
           accumulator.push({
             category: year,
             count: 1
           })
         }
-      } else {
-        accumulator.push({
-          category: year,
-          count: 1
-        })
-      }
-      return accumulator
-    }, [])
-
-    console.log(this.yearlyJoinDateData)
+        return accumulator
+      }, [])
+      .sort((curVal, nextVal) => curVal.category - nextVal.category)
 
     this.setState({ data: this.monthlyJoinDateData })
   }

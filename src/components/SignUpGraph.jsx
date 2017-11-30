@@ -7,15 +7,7 @@ import {
   Line,
   ResponsiveContainer
 } from 'recharts'
-import {
-  getMonth,
-  getDate,
-  getDay,
-  isSameYear,
-  getYear,
-  isThisMonth,
-  isThisYear
-} from 'date-fns'
+import { getMonth, getDate, getYear, isThisMonth, isThisYear } from 'date-fns'
 
 const months = [
   'January',

@@ -11,7 +11,7 @@ class Dashboard extends Component {
 
   render () {
     return (
-      <div className="dashboard container">
+      <div className="dashboard bg-light">
         <Header />
         <Sidebar />
         <SignupPage />

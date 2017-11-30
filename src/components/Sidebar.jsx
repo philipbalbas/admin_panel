@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Sidebar = props => (
-  <div className="sidebar">
+  <div className="sidebar container bg-white">
     <div>
       <h6>HOME</h6>
       <p>

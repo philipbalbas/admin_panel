@@ -13,7 +13,7 @@ const SignupPage = props => {
   return (
     <div className="page">
       <h1>Signups</h1>
-      <p>The spectacle before us was indeed sublime</p>
+      <p>Here's a list of your users</p>
       {!loading && (
         <div className="analytics">
           <SignUpStats users={props.data.allUsers} />

@@ -143,7 +143,7 @@ class SignUpGraph extends Component {
 
   render () {
     return (
-      <div className="graph1">
+      <div className="graph1 bg-white">
         <button onClick={this.handleClick} value="daily">
           Daily
         </button>

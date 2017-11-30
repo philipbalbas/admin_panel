@@ -4,7 +4,7 @@ import logo from '../biomark-logo.png'
 
 const Header = () => {
   return (
-    <div className="header navbar navbar-default navbar-fixed-top">
+    <div className="header navbar navbar-default bg-white">
       <a className="navbar-brand" href="#">
         <img src={logo} alt="BioMark Logo" height="45px" />
       </a>

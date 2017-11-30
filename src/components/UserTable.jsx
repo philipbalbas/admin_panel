@@ -53,7 +53,7 @@ class UserTable extends Component {
     let pages = Math.ceil(searchLength / 10)
     let slicedResults = searchResults.slice(0, 10)
     return (
-      <div className="table">
+      <div className="table bg-white">
         <h2>Users</h2>
         <input type="text" value={searchTerm} onChange={this.handleSearch} />
         <table className="table">

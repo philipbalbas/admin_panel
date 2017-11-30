@@ -83,7 +83,7 @@ const AgeGroupGraph = ({ users }) => {
   }, ageGroupDataAccumulator)
 
   return (
-    <div className="graph2">
+    <div className="graph2 bg-white">
       <h1>Age Group</h1>
       <ResponsiveContainer width="100%" height={500}>
         <BarChart data={ageGroupData} layout="vertical">

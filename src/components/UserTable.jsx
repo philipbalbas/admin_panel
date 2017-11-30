@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Table } from 'react-virtualized'
 
 class UserTable extends Component {
   state = {
@@ -7,37 +6,53 @@ class UserTable extends Component {
     searchResults: []
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setState({
       searchResults: this.props.users
     })
   }
-  
 
   handleSearch = e => {
     this.setState({
       searchResults: this.props.users.filter(
-            user =>
-              `${user.firstName} ${user.lastName}`
-                .toUpperCase()
-                .indexOf(e.target.value.toUpperCase()) >= 0
-          ),
+        user =>
+          `${user.firstName} ${user.lastName}`
+            .toUpperCase()
+            .indexOf(e.target.value.toUpperCase()) >= 0
+      ),
       searchTerm: e.target.value
     })
   }
 
+  renderPages = pages => {
+    const pageNum  = []
+    for (let i = 1; i < pages + 1; i++) {
+      pageNum.push(i)
+    }
+
+    if (pageNum.length > 10) {
+      const slicedPages = [...pageNum.slice(0, 10), '.','.','.', pageNum[pageNum.length -1] ]
+      console.log(slicedPages)
+      return slicedPages.map(num => {
+        return <span>{num}</span>
+      })
+    }
+    return (
+      pageNum.map(num => {
+        return <span>{num}</span>
+      })
+    )
+  }
+ 
   render () {
-    const { users } = this.props
-    const {searchResults, searchTerm} = this.state
+    const { searchResults, searchTerm } = this.state
+    let searchLength = searchResults.length
+    let pages = Math.ceil(searchLength / 10)
     let slicedResults = searchResults.slice(0, 10)
     return (
       <div>
         <h2>Users</h2>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={this.handleSearch}
-        />
+        <input type="text" value={searchTerm} onChange={this.handleSearch} />
         <table className="table">
           <thead>
             <tr>
@@ -51,41 +66,24 @@ class UserTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {!searchTerm ? (
-              users.map(user => {
-                return (
-                  <tr key={user.id}>
-                    <th scope="row">{user.id}</th>
-                    <td>
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td>{user.email}</td>
-                    <td>{user.phoneNumber}</td>
-                    <td>{user.joinDate}</td>
-                    <td>TYPE</td>
-                    <td>ACTIONS</td>
-                  </tr>
-                )
-              })
-            ) : (
-              slicedResults.map(user => {
-                return (
-                  <tr key={user.id}>
-                    <th scope="row">{user.id}</th>
-                    <td>
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td>{user.email}</td>
-                    <td>{user.phoneNumber}</td>
-                    <td>{user.joinDate}</td>
-                    <td>TYPE</td>
-                    <td>ACTIONS</td>
-                  </tr>
-                )
-              })
-            )}
+            {slicedResults.map(user => {
+              return (
+                <tr key={user.id}>
+                  <th scope="row">{user.id}</th>
+                  <td>
+                    {user.firstName} {user.lastName}
+                  </td>
+                  <td>{user.email}</td>
+                  <td>{user.phoneNumber}</td>
+                  <td>{user.joinDate}</td>
+                  <td>TYPE</td>
+                  <td>ACTIONS</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
+        {this.renderPages(pages)}
       </div>
     )
   }

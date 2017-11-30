@@ -4,12 +4,13 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import Sidebar from './Sidebar'
 import SignUpStats from './SignUpStats'
 import SignUpGraph from './SignUpGraph'
 import AgeGroupGraph from './AgeGroupGraph'
 import UserTable from './UserTable'
 
-class SignUpReportPage extends Component {
+class Dashboard extends Component {
   state = {}
 
   render () {
@@ -17,7 +18,8 @@ class SignUpReportPage extends Component {
     return (
       <div>
         <h1>Signups</h1>
-        <p>Here's a list of your users</p>
+        <p>The spectacle before us was indeed sublime</p>
+        <Sidebar />
         {!loading && (
           <div>
             <SignUpStats users={this.props.data.allUsers} />
@@ -46,4 +48,4 @@ const query = gql`
   }
 `
 
-export default graphql(query)(SignUpReportPage)
+export default graphql(query)(Dashboard)

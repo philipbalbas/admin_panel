@@ -143,7 +143,7 @@ class SignUpGraph extends Component {
 
   render () {
     return (
-      <div>
+      <div className="graph1">
         <button onClick={this.handleClick} value="daily">
           Daily
         </button>
@@ -153,7 +153,7 @@ class SignUpGraph extends Component {
         <button onClick={this.handleClick} value="yearly">
           Yearly
         </button>
-        <ResponsiveContainer width="50%" height={500}>
+        <ResponsiveContainer width="100%" height={500}>
           <LineChart data={this.state.data}>
             <XAxis
               dataKey="category"

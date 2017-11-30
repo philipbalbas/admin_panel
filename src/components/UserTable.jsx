@@ -25,32 +25,35 @@ class UserTable extends Component {
   }
 
   renderPages = pages => {
-    const pageNum  = []
+    const pageNum = []
     for (let i = 1; i < pages + 1; i++) {
       pageNum.push(i)
     }
 
     if (pageNum.length > 10) {
-      const slicedPages = [...pageNum.slice(0, 10), '.','.','.', pageNum[pageNum.length -1] ]
-      console.log(slicedPages)
+      const slicedPages = [
+        ...pageNum.slice(0, 10),
+        '.',
+        '.',
+        '.',
+        pageNum[pageNum.length - 1]
+      ]
       return slicedPages.map(num => {
         return <span>{num}</span>
       })
     }
-    return (
-      pageNum.map(num => {
-        return <span>{num}</span>
-      })
-    )
+    return pageNum.map(num => {
+      return <span>{num}</span>
+    })
   }
- 
+
   render () {
     const { searchResults, searchTerm } = this.state
     let searchLength = searchResults.length
     let pages = Math.ceil(searchLength / 10)
     let slicedResults = searchResults.slice(0, 10)
     return (
-      <div>
+      <div className="table">
         <h2>Users</h2>
         <input type="text" value={searchTerm} onChange={this.handleSearch} />
         <table className="table">

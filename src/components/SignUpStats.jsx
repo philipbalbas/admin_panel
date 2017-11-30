@@ -9,7 +9,7 @@ const SignUpStats = ({ users }) => {
     return dateFns.isThisMonth(user.joinDate)
   })
   return (
-    <div>
+    <div className="stats">
       <div>
         <i className="fa fa-users" aria-hidden="true">
           {usersSignedUpToday.length}

@@ -4,6 +4,55 @@ body {
   font-family: "Muli", sans-serif;
 }
 
-h1 h2 h3 h4 h5 h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Mukta", sans-serif;
+}
+
+.dashboard {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: "header header" "sidebar page";
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr 6fr;
+}
+
+.header {
+  grid-area: header;
+  color: white;
+}
+
+.page {
+  grid-area: page;
+}
+
+.analytics {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: "stats stats stats" "graph1 graph1 graph2"
+    "table table table";
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.stats {
+  grid-area: stats;
+}
+
+.graph1 {
+  grid-area: graph1;
+}
+
+.graph2 {
+  grid-area: graph2;
+}
+
+.table {
+  grid-area: table;
 }

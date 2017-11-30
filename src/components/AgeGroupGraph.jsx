@@ -3,12 +3,10 @@ import {
   BarChart,
   ResponsiveContainer,
   XAxis,
-  CartesianGrid,
   Bar,
   YAxis,
   Tooltip,
-  Legend,
-  LabelList
+  Legend
 } from 'recharts'
 
 const ageGroups = [
@@ -85,9 +83,9 @@ const AgeGroupGraph = ({ users }) => {
   }, ageGroupDataAccumulator)
 
   return (
-    <div>
+    <div className="graph2">
       <h1>Age Group</h1>
-      <ResponsiveContainer width="50%" height={500}>
+      <ResponsiveContainer width="100%" height={500}>
         <BarChart data={ageGroupData} layout="vertical">
           <XAxis type="number" />
           <YAxis type="category" dataKey="category" />

@@ -1,0 +1,41 @@
+{
+  "name": "admin-panel",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.1.1",
+    "apollo-client": "^2.0.3",
+    "apollo-link-http": "^1.2.0",
+    "bootstrap": "^4.0.0-beta.2",
+    "cors": "^2.8.4",
+    "date-fns": "^1.29.0",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "font-awesome": "^4.7.0",
+    "graphql": "^0.11.7",
+    "graphql-tag": "^2.5.0",
+    "json-graphql-server": "^1.0.1",
+    "react": "^16.2.0",
+    "react-apollo": "^2.0.1",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "recharts": "^1.0.0-beta.5"
+  },
+  "scripts": {
+    "client": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "server": "babel-node server/server.js",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "data": "rimraf \"server/data.json\" && babel-node fakeDataGenerator.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "concurrently": "^3.5.1",
+    "rimraf": "^2.6.2"
+  }
+}

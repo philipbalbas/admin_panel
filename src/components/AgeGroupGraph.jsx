@@ -22,80 +22,83 @@ const ageGroups = [
   '< 14'
 ]
 
-let ageGroupDataAccumulator = {}
-ageGroups.map((ageGroup, index) => {
-  ageGroupDataAccumulator[ageGroups[index]] = {
-    male: 0,
-    female: 0
+let ageGroupDataAccumulator = ageGroups.map((ageGroup, index) => {
+  return {
+    category: ageGroups[index],
+    Male: 0,
+    Female: 0
   }
 })
 
-const UserStats = ({ users }) => {
+const AgeGroupGraph = ({ users }) => {
   const ageGroupData = users.reduce((accumulator, currentUser) => {
-    // console.log(accumulator['85 >'])
     if (currentUser.age >= 85) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[0]].male += 1
+        accumulator[0].Male += 1
       } else {
-        accumulator[ageGroups[0]].female += 1
+        accumulator[0].Female += 1
       }
     } else if (currentUser.age >= 65) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[1]].male += 1
+        accumulator[1].Male += 1
       } else {
-        accumulator[ageGroups[1]].female += 1
+        accumulator[1].Female += 1
       }
     } else if (currentUser.age >= 55) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[2]].male += 1
+        accumulator[2].Male += 1
       } else {
-        accumulator[ageGroups[2]].female += 1
+        accumulator[2].Female += 1
       }
     } else if (currentUser.age >= 45) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[3]].male += 1
+        accumulator[3].Male += 1
       } else {
-        accumulator[ageGroups[3]].female += 1
+        accumulator[3].Female += 1
       }
     } else if (currentUser.age >= 35) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[4]].male += 1
+        accumulator[4].Male += 1
       } else {
-        accumulator[ageGroups[4]].female += 1
+        accumulator[4].Female += 1
       }
     } else if (currentUser.age >= 25) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[5]].male += 1
+        accumulator[5].Male += 1
       } else {
-        accumulator[ageGroups[5]].female += 1
+        accumulator[5].Female += 1
       }
     } else if (currentUser.age >= 15) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[6]].male += 1
+        accumulator[6].Male += 1
       } else {
-        accumulator[ageGroups[6]].female += 1
+        accumulator[6].Female += 1
       }
     } else if (currentUser.age >= 0) {
       if (currentUser.sex === 'Male') {
-        accumulator[ageGroups[7]].male += 1
+        accumulator[7].Male += 1
       } else {
-        accumulator[ageGroups[7]].female += 1
+        accumulator[7].Female += 1
       }
     }
     return accumulator
   }, ageGroupDataAccumulator)
 
-  console.log(ageGroupData)
-
   return (
-    <ResponsiveContainer width="50%" height={1500}>
-      <BarChart data={ageGroupData} layout="vertical">
-        <XAxis type="number" />
-        <YAxis type="category" dataKey="age" />
-        <Bar dataKey="age" />
-      </BarChart>
-    </ResponsiveContainer>
+    <div>
+      <h1>Age Group</h1>
+      <ResponsiveContainer width="50%" height={500}>
+        <BarChart data={ageGroupData} layout="vertical">
+          <XAxis type="number" />
+          <YAxis type="category" dataKey="category" />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="Female" fill="#C03F68" barSize={10} />
+          <Bar dataKey="Male" fill="#52C2B0" barSize={10} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
-export default UserStats
+export default AgeGroupGraph

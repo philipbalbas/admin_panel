@@ -5,7 +5,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import SignUpStats from './SignUpStats'
-import UserStats from './UserStats'
+import SignUpGraph from './SignUpGraph'
+import AgeGroupGraph from './AgeGroupGraph'
 import UserTable from './UserTable'
 
 class SignUpReportPage extends Component {
@@ -20,7 +21,8 @@ class SignUpReportPage extends Component {
         {!loading && (
           <div>
             <SignUpStats users={this.props.data.allUsers} />
-            <UserStats users={this.props.data.allUsers} />
+            <SignUpGraph users={this.props.data.allUsers} />
+            <AgeGroupGraph users={this.props.data.allUsers} />
             <UserTable users={this.props.data.allUsers} />
           </div>
         )}

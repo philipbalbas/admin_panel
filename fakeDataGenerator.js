@@ -1,6 +1,6 @@
-const faker = require('faker')
-const fs = require('fs')
-const path = require('path')
+import faker from 'faker'
+import fs from 'fs'
+import path from 'path'
 
 const data = {}
 
@@ -14,22 +14,24 @@ function randomAge () {
 }
 
 function userGenerator (num) {
+  let id = 1
   let users = []
   for (let i = 0; i < num; i++) {
     users.push({
-      id: faker.random.number(),
+      id,
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      joinDate: faker.date.recent(),
+      joinDate: faker.date.past(),
       phoneNumber: faker.phone.phoneNumber(),
       email: faker.internet.email(),
       sex: randomGender(),
       age: randomAge()
     })
+    id += 1
   }
   return users
 }
 
-data.users = userGenerator(100)
+data.users = userGenerator(1000)
 
 fs.appendFileSync(path.resolve('server', 'data.json'), JSON.stringify(data))

@@ -7,33 +7,35 @@ class UserTable extends Component {
     searchResults: []
   }
 
+  componentDidMount() {
+    this.setState({
+      searchResults: this.props.users
+    })
+  }
+  
+
   handleSearch = e => {
     this.setState({
-      searchTerm: e.target.value,
-      searchResults: this.state.searchTerm
-        ? this.props.users.filter(
+      searchResults: this.props.users.filter(
             user =>
               `${user.firstName} ${user.lastName}`
                 .toUpperCase()
-                .indexOf(this.state.searchTerm.toUpperCase()) >= 0
-          )
-        : this.state.searchResults.filter(
-            user =>
-              `${user.firstName} ${user.lastName}`
-                .toUpperCase()
-                .indexOf(this.state.searchTerm.toUpperCase()) >= 0
-          )
+                .indexOf(e.target.value.toUpperCase()) >= 0
+          ),
+      searchTerm: e.target.value
     })
   }
 
   render () {
     const { users } = this.props
+    const {searchResults, searchTerm} = this.state
+    let slicedResults = searchResults.slice(0, 10)
     return (
       <div>
         <h2>Users</h2>
         <input
           type="text"
-          value={this.state.searchTerm}
+          value={searchTerm}
           onChange={this.handleSearch}
         />
         <table className="table">
@@ -49,7 +51,7 @@ class UserTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {!this.state.searchTerm ? (
+            {!searchTerm ? (
               users.map(user => {
                 return (
                   <tr key={user.id}>
@@ -66,7 +68,7 @@ class UserTable extends Component {
                 )
               })
             ) : (
-              this.state.searchResults.map(user => {
+              slicedResults.map(user => {
                 return (
                   <tr key={user.id}>
                     <th scope="row">{user.id}</th>

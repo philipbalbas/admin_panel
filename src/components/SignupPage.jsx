@@ -12,15 +12,21 @@ const SignupPage = props => {
 
   return (
     <div className="page">
-      <h1>Signups</h1>
-      <p>Here's a list of your users</p>
       {!loading && (
+        <div>
+          <h1>Signups</h1>
+          <p>Here's a list of your users</p>
+        </div>
+      )}
+      {!loading ? (
         <div className="analytics">
           <SignUpStats users={props.data.allUsers} />
           <SignUpGraph users={props.data.allUsers} />
           <AgeGroupGraph users={props.data.allUsers} />
           <UserTable users={props.data.allUsers} />
         </div>
+      ) : (
+        <h1>Loading Page</h1>
       )}
     </div>
   )
@@ -37,6 +43,7 @@ const query = gql`
       phoneNumber
       sex
       age
+      type
     }
   }
 `

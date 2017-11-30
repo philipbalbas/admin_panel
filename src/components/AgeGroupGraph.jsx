@@ -85,7 +85,7 @@ const AgeGroupGraph = ({ users }) => {
   return (
     <div className="graph2 bg-white">
       <h1>Age Group</h1>
-      <ResponsiveContainer width="100%" height={500}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={ageGroupData} layout="vertical">
           <XAxis type="number" />
           <YAxis type="category" dataKey="category" />

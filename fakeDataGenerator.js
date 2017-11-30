@@ -13,6 +13,20 @@ function randomAge () {
   return Math.floor(Math.random() * 101)
 }
 
+function randomType () {
+  const rand = Math.floor(Math.random() * 5)
+  if (rand <= 3) {
+    return 'Customer'
+  } else {
+    return 'Provider'
+  }
+}
+
+function randomDate () {
+  const rand = Math.round(Math.random())
+  return rand ? faker.date.recent() : faker.date.past()
+}
+
 function userGenerator (num) {
   let id = 1
   let users = []
@@ -21,11 +35,12 @@ function userGenerator (num) {
       id,
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      joinDate: faker.date.past(),
+      joinDate: randomDate(),
       phoneNumber: faker.phone.phoneNumber(),
       email: faker.internet.email(),
       sex: randomGender(),
-      age: randomAge()
+      age: randomAge(),
+      type: randomType()
     })
     id += 1
   }

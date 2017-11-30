@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
 
 class UserTable extends Component {
   state = {
     searchTerm: '',
-    searchResults: []
+    searchResults: [],
+    checkboxChecked: false
   }
 
   componentDidMount () {
@@ -38,12 +41,18 @@ class UserTable extends Component {
         '.',
         pageNum[pageNum.length - 1]
       ]
-      return slicedPages.map(num => {
-        return <span>{num}</span>
+      return slicedPages.map((num, index) => {
+        return <span key={index}>{num}</span>
       })
     }
     return pageNum.map(num => {
       return <span>{num}</span>
+    })
+  }
+
+  handleClick = e => {
+    this.setState({
+      checkboxChecked: !this.state.checkboxChecked
     })
   }
 
@@ -55,10 +64,25 @@ class UserTable extends Component {
     return (
       <div className="table bg-white">
         <h2>Users</h2>
-        <input type="text" value={searchTerm} onChange={this.handleSearch} />
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={this.handleSearch}
+          />
+          <span className="input-group-addon">
+            <i className="fa fa-search" />
+          </span>
+        </div>
+
         <table className="table">
           <thead>
             <tr>
+              <th scope="col">
+                <input type="checkbox" onChange={this.handleClick} />
+              </th>
               <th scope="col">ID</th>
               <th scope="col">NAME</th>
               <th scope="col">EMAIL</th>
@@ -72,15 +96,39 @@ class UserTable extends Component {
             {slicedResults.map(user => {
               return (
                 <tr key={user.id}>
-                  <th scope="row">{user.id}</th>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={this.state.checkboxChecked}
+                      onChange={e => {
+                        console.log(e.target.checked)
+                        e.target.checked = !e.target.checked
+                      }}
+                    />
+                  </td>
+                  <td>{user.id}</td>
                   <td>
                     {user.firstName} {user.lastName}
                   </td>
                   <td>{user.email}</td>
                   <td>{user.phoneNumber}</td>
-                  <td>{user.joinDate}</td>
-                  <td>TYPE</td>
-                  <td>ACTIONS</td>
+                  <td>{format(user.joinDate, 'MM-DD-YYYY')}</td>
+                  <td>
+                    <button
+                      className={`btn btn-${user.type === 'Customer'
+                        ? 'success'
+                        : 'danger'}`}
+                    >
+                      {user.type}
+                    </button>
+                  </td>
+                  <td>
+                    <Link to={`/profile/${user.id}`}>
+                      <button className="btn btn-outline-secondary">
+                        Go To Profile
+                      </button>
+                    </Link>
+                  </td>
                 </tr>
               )
             })}

@@ -44,6 +44,8 @@ h6 {
 
 .stats {
   grid-area: stats;
+  /* display: flex;
+  justify-content: space-around; */
 }
 
 .graph1 {
@@ -58,14 +60,26 @@ h6 {
   grid-area: table;
 }
 
-i {
+.sidebar i {
   padding-right: 15px;
 }
 
-/* .bg-gray {
-  color: rgb(65, 65, 65);
-} */
+.icon-back-1 {
+  color: #52c2b0;
+}
 
-/* .bg-white {
-  background-color: white;
-} */
+.icon-back-2 {
+  color: #c03f68;
+}
+
+.icon-back-3 {
+  color: #4b494b;
+}
+
+@media screen and (max-width: 992px) {
+  .analytics {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-areas: "stats" "graph1" "graph2" "table";
+  }
+}

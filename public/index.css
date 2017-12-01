@@ -97,6 +97,12 @@ a.sidebar-button:not([href]):active {
   cursor: pointer;
 }
 
+p.sidebar-button:hover,
+p.sidebar-button:active {
+  color: var(--biomar-teal);
+  cursor: pointer;
+}
+
 a.graph-button:not([href]):hover,
 a.graph-button:not([href]):active {
   color: var(--biomar-teal);
@@ -110,6 +116,11 @@ a.graph-button:not([href]) {
 
 .pages {
   text-align: center;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  width: 100px;
 }
 
 @media screen and (max-width: 1100px) {

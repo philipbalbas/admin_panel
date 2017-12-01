@@ -1,0 +1,4 @@
+export default {
+  SEND_DATA_TODAY: 'SEND_DATA_TODAY',
+  SEND_DATA_MONTH: 'SEND_DATA_MONTH'
+}

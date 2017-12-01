@@ -90,7 +90,12 @@ const AgeGroupGraph = ({ users }) => {
           <XAxis type="number" />
           <YAxis type="category" dataKey="category" />
           <Tooltip />
-          <Legend />
+          <Legend
+            layout="vertical"
+            align="right"
+            verticalAlign="middle"
+            iconType="circle"
+          />
           <Bar dataKey="Female" fill="#C03F68" barSize={10} />
           <Bar dataKey="Male" fill="#52C2B0" barSize={10} />
         </BarChart>

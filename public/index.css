@@ -91,6 +91,12 @@ h6 {
   padding-bottom: 5px;
 }
 
+a.sidebar-button:not([href]):hover,
+a.sidebar-button:not([href]):active {
+  color: var(--biomar-teal);
+  cursor: pointer;
+}
+
 a.graph-button:not([href]):hover,
 a.graph-button:not([href]):active {
   color: var(--biomar-teal);
@@ -125,7 +131,7 @@ a.graph-button:not([href]) {
   .dashboard {
     display: grid;
     grid-gap: 1rem;
-    grid-template-areas: "header" "page";
+    grid-template-areas: "header" "page" "sidebar";
     grid-template-rows: auto;
     grid-template-columns: minmax(min-content);
   }
@@ -149,6 +155,6 @@ a.graph-button:not([href]) {
   .graph1,
   .graph2,
   .table {
-    width: 20%;
+    width: 35%;
   }
 }

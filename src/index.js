@@ -4,8 +4,12 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { ApolloProvider } from 'react-apollo'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 import App from './App'
+import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
 
 const client = new ApolloClient({
@@ -13,9 +17,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+const store = createStore(reducer, composeWithDevTools())
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </ApolloProvider>,
   document.getElementById('root')
 )

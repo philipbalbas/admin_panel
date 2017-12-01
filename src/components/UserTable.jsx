@@ -36,17 +36,24 @@ class UserTable extends Component {
     if (pageNum.length > 10) {
       const slicedPages = [
         ...pageNum.slice(0, 10),
-        '.',
-        '.',
-        '.',
-        pageNum[pageNum.length - 1]
+        '...',
+        pageNum[pageNum.length - 1],
+        'Next >'
       ]
       return slicedPages.map((num, index) => {
-        return <span key={index}>{num}</span>
+        return (
+          <a className="graph-button" key={index}>
+            {num}
+          </a>
+        )
       })
     }
-    return pageNum.map(num => {
-      return <span>{num}</span>
+    return pageNum.map((num, index) => {
+      return (
+        <a className="graph-button" key={index}>
+          {num}
+        </a>
+      )
     })
   }
 
@@ -63,18 +70,22 @@ class UserTable extends Component {
     let slicedResults = searchResults.slice(0, 10)
     return (
       <div className="table bg-white">
-        <h2>Users</h2>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={this.handleSearch}
-          />
-          <span className="input-group-addon">
-            <i className="fa fa-search" />
+        <div className="row">
+          <span className="col">
+            <h4>Users</h4>
           </span>
+          <div className="input-group col-4">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={this.handleSearch}
+            />
+            <span className="input-group-addon">
+              <i className="fa fa-search" />
+            </span>
+          </div>
         </div>
 
         <table className="table">
@@ -134,7 +145,7 @@ class UserTable extends Component {
             })}
           </tbody>
         </table>
-        {this.renderPages(pages)}
+        <div className="pages">{this.renderPages(pages)}</div>
       </div>
     )
   }

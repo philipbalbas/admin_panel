@@ -23,8 +23,14 @@ function randomType () {
 }
 
 function randomDate () {
-  const rand = Math.round(Math.random())
-  return rand ? faker.date.recent() : faker.date.past()
+  const rand = Math.floor(Math.random() * 7)
+  if (rand <= 3) {
+    return faker.date.recent()
+  } if (rand <= 5) {
+    return faker.date.past()
+  } else {
+    return faker.date.future()
+  }
 }
 
 function userGenerator (num) {

@@ -131,12 +131,14 @@ class SignUpGraph extends Component {
   }
 
   handleClick = e => {
-    const { value } = e.target
-    if (value === 'daily') {
+    console.log(e.target)
+    console.log(e.target.attributes.value.nodeValue)
+    const { nodeValue } = e.target.attributes.value
+    if (nodeValue === 'daily') {
       this.setState({ data: this.dailyJoinDateData })
-    } else if (value === 'monthly') {
+    } else if (nodeValue === 'monthly') {
       this.setState({ data: this.monthlyJoinDateData })
-    } else if (value === 'yearly') {
+    } else if (nodeValue === 'yearly') {
       this.setState({ data: this.yearlyJoinDateData })
     }
   }
@@ -144,16 +146,16 @@ class SignUpGraph extends Component {
   render () {
     return (
       <div className="graph1 bg-white">
-        <button onClick={this.handleClick} value="daily">
+        <a className="graph-button" onClick={this.handleClick} value="daily">
           Daily
-        </button>
-        <button onClick={this.handleClick} value="monthly">
+        </a>
+        <a className="graph-button" onClick={this.handleClick} value="monthly">
           Monthly
-        </button>
-        <button onClick={this.handleClick} value="yearly">
+        </a>
+        <a className="graph-button" onClick={this.handleClick} value="yearly">
           Yearly
-        </button>
-        <ResponsiveContainer width="100%" height={300}>
+        </a>
+        <ResponsiveContainer className="graph" width="100%" height={300}>
           <LineChart data={this.state.data}>
             <XAxis
               dataKey="category"

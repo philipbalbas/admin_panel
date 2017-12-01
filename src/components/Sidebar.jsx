@@ -42,7 +42,7 @@ const Sidebar = props => (
       </p>
     </div>
     <div>
-      <h1>Others</h1>
+      <h6>Others</h6>
       <p>
         <i className="fa fa-envelope" aria-hidden="true" />Newsletter
       </p>

@@ -25,7 +25,7 @@
 - React - frontend framework
 - Redux - state management
 - React-router - client side routing
-- GraphQL - API
+- GraphQL - API endpoint for data
 - Apollo - client API fetcher
 - Recharts - chart tool
 - Express - server GraphQL API
